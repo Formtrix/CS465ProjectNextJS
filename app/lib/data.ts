@@ -20,7 +20,7 @@ export async function fetchRevenue() {
     // Don't do this in production :) whatever that means
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
     // Execute the query using the client
     const data = await client.sql<Revenue>`SELECT * FROM revenue`;
@@ -46,7 +46,7 @@ export async function fetchLatestInvoices() {
   try {
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     // Execute the query using the client
     const data = await client.sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
@@ -96,7 +96,7 @@ export async function fetchCardData() {
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     return {
       numberOfCustomers,
@@ -262,3 +262,5 @@ export async function fetchFilteredCustomers(query: string) {
     client.release(); // Release the connection after use
   }
 }
+
+export const revalidate = 0; // Disable caching entirely for server-side fetching
