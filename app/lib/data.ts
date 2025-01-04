@@ -1,4 +1,3 @@
-'use client';
 import dotenv from 'dotenv';
 import { db } from '@vercel/postgres';
 import {
