@@ -27,6 +27,7 @@ export default function NavLinks() {
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
+        // Render the links, icons and text with the current path highlighted using clsx.
         return (
           <Link
             key={link.name}
