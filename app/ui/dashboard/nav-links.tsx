@@ -6,6 +6,7 @@ import {
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+// React hook from the server
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
