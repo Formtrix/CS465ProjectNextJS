@@ -1,13 +1,13 @@
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
-import { lusitana } from "@/app/ui/fonts";
+import { quicksand } from "@/app/ui/fonts";
 
 export default function AcmeLogo() {
   return (
     <div
-      className={`${lusitana.className} flex flex-row items-center leading-none text-white`}
+      className={`${quicksand.className} flex flex-row items-center justify-center text-black font-bold`}
     >
-      <GlobeAltIcon className="h-12 w-12 rotate-[15deg]" />
-      <p className="text-[44px]">Acme</p>
+      <GlobeAltIcon className="h-12 w-12" />
+      <p className="text-[20px] font-bold ml-2">Acme App</p>
     </div>
   );
 }
