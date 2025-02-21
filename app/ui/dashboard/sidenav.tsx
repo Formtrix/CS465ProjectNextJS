@@ -1,10 +1,13 @@
 import NavLinks from "@/app/ui/dashboard/nav-links";
 import AcmeLogo from "@/app/ui/acme-logo";
 import { LogOut } from "lucide-react";
+import styles from "@/app/ui/home.module.css";
 
 export default function SideNav() {
   return (
-    <div className="flex h-full flex-col items-center px-4 py-4 md:px-2">
+    <div
+      className={`flex h-full flex-col items-center px-4 py-4 md:px-2 ${styles["user-select-none"]}`}
+    >
       <figure className="mb-8 mt-4 flex items-center justify-center rounded-md bg-transparent p-4">
         <div className="w-full flex justify-center items-center">
           <AcmeLogo />

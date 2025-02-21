@@ -23,6 +23,30 @@ async function seedUsers() {
         VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
         ON CONFLICT (id) DO NOTHING;
       `;
+      //////////////////////////////////////////
+      //  Returning a message to the user //////
+      //////////////////////////////////////////
+      
+      /* const insertedUsers = await Promise.all(
+  users.map(async (user) => {
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    try {
+      await client.sql`
+        INSERT INTO users (id, name, email, password)
+        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+      return { id: user.id, status: 'inserted' };
+    } catch (error) {
+      if (error.code === '23505') { // Unique violation error code
+        return { id: user.id, status: 'already exists' };
+      }
+      throw error;
+    }
+  }),
+);
+
+return insertedUsers; */
     }),
   );
 

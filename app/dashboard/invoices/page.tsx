@@ -19,25 +19,21 @@ export default async function Page(props: {
   const totalPages = await fetchInvoicesPages(query);
 
   return (
-    <div className="w-full">
-      <div className="flex w-full items-center justify-between">
-        <h1 className={`${quicksand.className} text-2xl`}>Invoices</h1>
-      </div>
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search invoices...." />
+    <main>
+      <h1 className={`${quicksand.className} mb-4 text-xl md:text-2xl`}>
+        Invoices
+      </h1>
+      <div className="flex items-center justify-between gap-2 md:mt-4">
+        <Search className="rounded-full" placeholder="Search invoices...." />
+        {/* Apply rounded-md class */}
         <CreateInvoice />
       </div>
-      {
-        <Suspense
-          key={query + currentPage}
-          fallback={<InvoicesTableSkeleton />}
-        >
-          <Table query={query} currentPage={currentPage} />
-        </Suspense>
-      }
-      <div className="mt-5 flex w-full justify-center">
+      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
+        <Table query={query} currentPage={currentPage} />
+      </Suspense>
+      <div className="flex justify-center mt-5">
         <Pagination totalPages={totalPages} />
       </div>
-    </div>
+    </main>
   );
 }

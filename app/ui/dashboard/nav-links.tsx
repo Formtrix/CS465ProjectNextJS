@@ -5,8 +5,8 @@ import {
   HomeIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
+import { RotateCw } from "lucide-react";
 import Link from "next/link";
-// React hook from the server
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
@@ -19,6 +19,7 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
+  { name: "Activity", href: "/dashboard/activity", icon: RotateCw },
 ];
 
 export default function NavLinks() {
@@ -33,19 +34,17 @@ export default function NavLinks() {
         const isActive =
           link.href === "/dashboard"
             ? pathname === link.href // Exact match for Home
-            : pathname.startsWith(link.href);
+            : pathname?.startsWith(link.href); // Use optional chaining to avoid null error
+
+        const linkClassName = clsx(
+          "group flex h-[48px] w-full items-center justify-start gap-4 rounded-md p-3 text-sm font-medium transition-colors hover:bg-sky-100 hover:shadow-md",
+          isActive
+            ? "bg-sky-400 text-white hover:bg-sky-500"
+            : "bg-white text-gray-500 hover:bg-sky-100"
+        );
 
         return (
-          <Link
-            key={link.name}
-            href={link.href}
-            className={clsx(
-              "group flex h-[48px] w-full items-center justify-start gap-4 rounded-md p-3 text-sm font-medium transition-colors hover:bg-sky-100 hover:shadow-md",
-              isActive
-                ? "bg-sky-400 text-white hover:bg-sky-500"
-                : "bg-white text-gray-500 hover:bg-sky-100"
-            )}
-          >
+          <Link key={link.name} href={link.href} className={linkClassName}>
             <LinkIcon
               className={clsx(
                 "w-8 h-8 stroke-2 transition-colors",
