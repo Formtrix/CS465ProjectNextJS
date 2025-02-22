@@ -1,4 +1,3 @@
-import Search from "@/app/ui/search";
 import Table from "@/app/ui/invoices/table";
 import { CreateInvoice } from "@/app/ui/invoices/buttons";
 import { quicksand } from "@/app/ui/fonts";
@@ -15,7 +14,7 @@ export default async function Page(props: {
 
   return (
     <main className="flex flex-col overflow-y-auto">
-      <div className="flex-shrink-0">
+      <div className="container mx-auto flex-shrink-0">
         <h1 className={`${quicksand.className} mb-4 text-xl md:text-2xl`}>
           Invoices
         </h1>

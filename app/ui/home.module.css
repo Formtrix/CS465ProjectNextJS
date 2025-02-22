@@ -15,3 +15,12 @@
     transform: translateX(100%);
   }
 }
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  /* Ensure the background is set */
+  z-index: 1;
+  /* Ensure it stays above other content */
+}
