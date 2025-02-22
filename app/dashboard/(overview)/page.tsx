@@ -17,7 +17,7 @@ export default async function Page() {
   return (
     <main>
       <h1 className={`${quicksand.className} mb-4 text-xl md:text-2xl`}>
-        Dashboard
+        <Loading />
       </h1>
 
       {/* Wrap CardWrapper in Suspense with CardsSkeleton as fallback */}

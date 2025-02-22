@@ -9,3 +9,9 @@
 .user-select-none {
   user-select: none;
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

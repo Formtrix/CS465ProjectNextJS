@@ -9,14 +9,14 @@ import { fetchInvoicesPages } from "@/app/lib/data";
 
 export default async function Page(props: {
   searchParams?: Promise<{
-    query?: string;
+    search?: string;
     page?: string;
   }>;
 }) {
   const searchParams = await props.searchParams;
-  const query = searchParams?.query || "";
+  const search = searchParams?.search || "";
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await fetchInvoicesPages(query);
+  const totalPages = await fetchInvoicesPages(search);
 
   return (
     <main>
@@ -28,8 +28,8 @@ export default async function Page(props: {
         {/* Apply rounded-md class */}
         <CreateInvoice />
       </div>
-      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-        <Table query={query} currentPage={currentPage} />
+      <Suspense key={search + currentPage} fallback={<InvoicesTableSkeleton />}>
+        <Table search={search} currentPage={currentPage} />
       </Suspense>
       <div className="flex justify-center mt-5">
         <Pagination totalPages={totalPages} />

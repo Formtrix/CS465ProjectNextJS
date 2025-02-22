@@ -1,3 +1,8 @@
+// Challange all the data fetching functions to use the new database client
+// and return the data from the database.
+// Implement async functions to improve the rate of data fetching in order to
+//  improve the performance of the application.
+
 import dotenv from 'dotenv';
 import { db } from '@vercel/postgres';
 import {
@@ -20,7 +25,7 @@ export async function fetchRevenue() {
     // Don't do this in production :) whatever that means
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     // Execute the query using the client
     const data = await client.sql<Revenue>`SELECT * FROM revenue`;
@@ -28,7 +33,7 @@ export async function fetchRevenue() {
     //const data = await sql<Revenue>`SELECT * FROM revenue`;
 
     // Log or process the result if needed
-    console.log('Data fetch completed.');
+    console.log('Data fetch completed 3 seconds.');
 
     // Return the rows from the query result
     return data.rows;
@@ -46,7 +51,7 @@ export async function fetchLatestInvoices() {
   try {
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     // Execute the query using the client
     const data = await client.sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
@@ -83,6 +88,8 @@ export async function fetchCardData() {
         SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
       FROM invoices`;
 
+    // Start executing all data fetches at the same time, 
+    // which is faster than waiting for each request to complete in a waterfall.
     const data = await Promise.all([
       invoiceCountPromise,
       customerCountPromise,
@@ -96,7 +103,7 @@ export async function fetchCardData() {
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     return {
       numberOfCustomers,
