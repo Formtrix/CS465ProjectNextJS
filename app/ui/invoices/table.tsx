@@ -2,12 +2,14 @@ import Image from "next/image";
 import InvoiceStatus from "@/app/ui/invoices/status";
 import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
 import { fetchAllInvoices } from "@/app/lib/data"; // Adjust the import as needed
+import Search from "@/app/ui/search";
+import { CreateInvoice } from "@/app/ui/invoices/buttons";
 
 export default async function InvoicesTable({ search }: { search: string }) {
   const invoices = await fetchAllInvoices(search); // Fetch all invoices
 
   return (
-    <div className="mt-6 flow-root">
+    <div className="mt-6 flow-root overflow-auto">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
           <div className="md:hidden">
@@ -43,22 +45,28 @@ export default async function InvoicesTable({ search }: { search: string }) {
               </div>
             ))}
           </div>
+          <div className="flex items-center justify-between md:mt-4 bg-white px-5">
+            <Search
+              className="rounded-full mt-8 mb-8 w-full md:w-8/12"
+              placeholder="Search invoices...."
+            />
+          </div>
           <table className="hidden min-w-full text-gray-900 md:table">
-            <thead className="rounded-lg text-left text-sm font-normal sticky top-0 bg-gray-50">
+            <thead className="rounded-lg text-left text-sm font-normal sticky top-0 bg-white">
               <tr>
-                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                <th scope="col" className="px-4 py-5 font-bold sm:pl-6">
                   Customer
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 py-5 font-bold">
                   Email
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 py-5 fontbold">
                   Amount
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 py-5 font-bold">
                   Date
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 py-5 font-bold">
                   Status
                 </th>
               </tr>

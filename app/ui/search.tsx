@@ -38,7 +38,7 @@ export default function Search({ placeholder, className }: SearchProps) {
       <input
         id="search"
         className={clsx(
-          "peer block w-full border border-gray-300 py-[10px] pl-10 text-md outline-2 placeholder:text-gray-400 rounded-full focus:border-sky-400",
+          "peer block w-full border border-gray-300 py-[10px] pl-10 text-md outline-2 placeholder:text-gray-400 rounded-full focus:border-sky-400 bg-gray-100",
           className // Apply className prop
         )}
         placeholder={placeholder}

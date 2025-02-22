@@ -14,17 +14,16 @@ export default async function Page(props: {
   const search = searchParams?.search || "";
 
   return (
-    <main className="flex flex-col h-screen">
+    <main className="flex flex-col overflow-y-auto">
       <div className="flex-shrink-0">
         <h1 className={`${quicksand.className} mb-4 text-xl md:text-2xl`}>
           Invoices
         </h1>
         <div className="flex items-center justify-between gap-2 md:mt-4">
-          <Search className="rounded-full" placeholder="Search invoices...." />
           <CreateInvoice />
         </div>
       </div>
-      <div className="flex-grow overflow-y-auto mt-6">
+      <div className="flex-grow">
         <Suspense key={search} fallback={<InvoicesTableSkeleton />}>
           <Table search={search} />
         </Suspense>
