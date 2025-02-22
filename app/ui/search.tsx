@@ -19,7 +19,6 @@ export default function Search({ placeholder, className }: SearchProps) {
   // use debounce to wrap the contents of handleSearch, and only run handleSearch after 300ms
   const handleSearch = useDebouncedCallback((term) => {
     const params = new URLSearchParams(searchParams || "");
-    params.set("page", "1");
     if (term) {
       params.set("search", term);
     } else {

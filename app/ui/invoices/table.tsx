@@ -1,17 +1,10 @@
 import Image from "next/image";
-import { UpdateInvoice, DeleteInvoice } from "@/app/ui/invoices/buttons";
 import InvoiceStatus from "@/app/ui/invoices/status";
 import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
-import { fetchFilteredInvoices } from "@/app/lib/data";
+import { fetchAllInvoices } from "@/app/lib/data"; // Adjust the import as needed
 
-export default async function InvoicesTable({
-  search,
-  currentPage,
-}: {
-  search: string;
-  currentPage: number;
-}) {
-  const invoices = await fetchFilteredInvoices(search, currentPage);
+export default async function InvoicesTable({ search }: { search: string }) {
+  const invoices = await fetchAllInvoices(search); // Fetch all invoices
 
   return (
     <div className="mt-6 flow-root">
@@ -46,16 +39,12 @@ export default async function InvoicesTable({
                     </p>
                     <p>{formatDateToLocal(invoice.date)}</p>
                   </div>
-                  <div className="flex justify-end gap-2">
-                    <UpdateInvoice id={invoice.id} />
-                    <DeleteInvoice id={invoice.id} />
-                  </div>
                 </div>
               </div>
             ))}
           </div>
           <table className="hidden min-w-full text-gray-900 md:table">
-            <thead className="rounded-lg text-left text-sm font-normal">
+            <thead className="rounded-lg text-left text-sm font-normal sticky top-0 bg-gray-50">
               <tr>
                 <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                   Customer
@@ -71,9 +60,6 @@ export default async function InvoicesTable({
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
                   Status
-                </th>
-                <th scope="col" className="relative py-3 pl-6 pr-3">
-                  <span className="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
@@ -106,12 +92,6 @@ export default async function InvoicesTable({
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <InvoiceStatus status={invoice.status} />
-                  </td>
-                  <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    <div className="flex justify-end gap-3">
-                      <UpdateInvoice id={invoice.id} />
-                      <DeleteInvoice id={invoice.id} />
-                    </div>
                   </td>
                 </tr>
               ))}

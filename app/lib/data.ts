@@ -25,7 +25,7 @@ export async function fetchRevenue() {
     // Don't do this in production :) whatever that means
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // Execute the query using the client
     const data = await client.sql<Revenue>`SELECT * FROM revenue`;
@@ -51,7 +51,7 @@ export async function fetchLatestInvoices() {
   try {
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     // Execute the query using the client
     const data = await client.sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
@@ -103,7 +103,7 @@ export async function fetchCardData() {
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     return {
       numberOfCustomers,
@@ -121,8 +121,7 @@ export async function fetchCardData() {
 
 const ITEMS_PER_PAGE = 6;
 
-export async function fetchFilteredInvoices(query: string, currentPage: number) {
-  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+export async function fetchAllInvoices(query: string) {
   const client = await db.connect(); // Explicitly create a database client
 
   try {
@@ -143,8 +142,7 @@ export async function fetchFilteredInvoices(query: string, currentPage: number) 
         invoices.amount::text ILIKE ${`%${query}%`} OR
         invoices.date::text ILIKE ${`%${query}%`} OR
         invoices.status ILIKE ${`%${query}%`}
-      ORDER BY invoices.date DESC
-      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
+      ORDER BY invoices.date DESC`;
 
     return invoices.rows; // Return the result rows
   } catch (error) {
