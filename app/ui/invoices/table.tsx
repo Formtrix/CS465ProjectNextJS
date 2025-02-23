@@ -45,14 +45,14 @@ export default async function InvoicesTable({ search }: { search: string }) {
               </div>
             ))}
           </div>
-          <div className="items-center sticky justify-between md:mt-4 bg-white px-5">
+          <div className="flex items-center justify-between md:mt-4 bg-white px-5">
             <Search
               className="rounded-full mt-8 mb-8 w-full md:w-8/12"
               placeholder="Search invoices...."
             />
           </div>
           <table className="hidden min-w-full text-gray-900 md:table">
-            <thead className="rounded-lg text-left text-md font-normal bg-white">
+            <thead className="rounded-full  text-md font-normal bg-gray-200">
               <tr>
                 <th scope="col" className="px-4 py-5 font-bold sm:pl-6">
                   Customer
@@ -71,7 +71,9 @@ export default async function InvoicesTable({ search }: { search: string }) {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white">
+            <tbody className="bg-white mt-32 pt-16">
+              {" "}
+              {/* Adjust margin and padding to account for fixed thead */}
               {invoices?.map((invoice) => (
                 <tr
                   key={invoice.id}

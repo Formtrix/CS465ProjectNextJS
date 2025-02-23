@@ -18,15 +18,23 @@ export default function Search({ placeholder, className }: SearchProps) {
 
   // use debounce to wrap the contents of handleSearch, and only run handleSearch after 300ms
   const handleSearch = useDebouncedCallback((term) => {
+    // Think of Search engine like Google, when you search for "apple orange"
+    // It will search for "apple" OR "orange"
+    // Think of AI like Siri, when you ask "What is the capital of France and Germany"
+    // It will search for "What is the capital of France" AND "What is the capital of Germany"
+    // Update the search query parameter with logical OR operator
+    // If term is empty, remove the search query parameter
     const params = new URLSearchParams(searchParams || "");
     if (term) {
-      params.set("search", term);
+      params.set("search", term); // Set the search query parameter
     } else {
-      params.delete("search");
+      params.delete("search"); // Remove the search query parameter if term is empty
     }
     // Log the search term for analytics
     // console.log("Search term:", term);//
     // You can also send the term to an analytics service here
+
+    // Update the URL with the new search term
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
