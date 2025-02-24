@@ -20,7 +20,7 @@ export default async function Activities() {
 
   return (
     <div>
-      <h1>Users</h1>
+      <p>Users</p>
       <ul>
         {users.map((user) => (
           <li key={user.id}>{user.name}</li>

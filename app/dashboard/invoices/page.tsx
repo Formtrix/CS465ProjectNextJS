@@ -14,11 +14,13 @@ export default async function Page(props: {
 
   return (
     <main className="flex flex-col overflow-y-auto">
-      <div className="container mx-auto flex-shrink-0">
-        <h1 className={`${quicksand.className}  text-xl fixed bg-gray-200`}>
+      <div className="container mx-auto flex-grow">
+        <h1
+          className={`${quicksand.className}  text-xl font-semibold fixed bg-gray-200`}
+        >
           Invoices
         </h1>
-        <div className="fixed bg-gray-200 top-14 right-4 p-4">
+        <div className="fixed bg-gray-200 top-14 right-4">
           <CreateInvoice />
         </div>
       </div>
