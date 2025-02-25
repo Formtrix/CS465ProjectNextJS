@@ -37,7 +37,7 @@ export default function NavLinks() {
             : pathname?.startsWith(link.href); // Use optional chaining to avoid null error
 
         const linkClassName = clsx(
-          "group flex h-[48px] w-full items-center justify-start gap-4 rounded-md p-3 text-sm font-medium transition-colors hover:bg-sky-100 hover:shadow-md",
+          "group flex h-[48px] w-full items-center justify-start rounded-md p-3 text-sm font-medium transition-colors hover:bg-sky-100 hover:shadow-md",
           isActive
             ? "bg-sky-400 text-white hover:bg-sky-500"
             : "bg-white text-gray-500 hover:bg-sky-100"

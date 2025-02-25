@@ -72,7 +72,7 @@ export default async function InvoicesTable({ search }: { search: string }) {
               </tr>
             </thead>
             <tbody className="bg-white mt-32 pt-16">
-              {" "}
+              {/* {" "} */}
               {/* Adjust margin and padding to account for fixed thead */}
               {invoices?.map((invoice) => (
                 <tr
