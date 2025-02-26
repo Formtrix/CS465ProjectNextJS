@@ -1,25 +1,46 @@
-# Full Stack Application
-## React and NextJS Design principles
- 
-Updating.....
+express server app :::::::::::::::::::::/
 
-## Financial dashboard that has:
+# 2D Tensor (Matrix)
 
-- A public home page.
-- A login page.
-- Dashboard pages that are protected by authentication.
-- The ability for users to add, edit, and delete invoices.
-- The dashboard will also have an accompanying database.
+## (2 matrices, 2x2) Shape: (2, 2, 2)
 
-## Essential skills exercised in this project include building a full-stack Next.js application dashboard.
+```js
+tensor = np.array([
+  [
+    [1, 2],
+    [3, 4],
+  ],
+  [
+    [5, 6],
+    [7, 8],
+  ],
+]);
+```
 
-- Styling: The different ways to style your application in Next.js.
-- Optimizations: How to optimize images, links, and fonts.
-- Routing: How to create nested layouts and pages using file-system routing.
-- Data Fetching: How to set up a database on Vercel, and best practices for fetching and streaming.
-- Search and Pagination: How to implement search and pagination using URL Search Params.
-- Mutating Data: How to mutate data using React Server Actions, and revalidate the Next.js cache.
-- Error Handling: How to handle general and 404 not found errors.
-- Form Validation and Accessibility: How to do server-side form validation and tips for improving accessibility.
-- Authentication: How to add authentication to your application using NextAuth.js and Middleware.
-- Metadata: How to add metadata and prepare your application for social sharing.
+# 3D tensor, 2x2
+
+```js
+(3 matrices, 2x2)
+tensor = np.array([
+[[1, 2], [3, 4]],
+[[5, 6], [7, 8]],
+[[9, 10], [11, 12]]
+])
+```
+
+# 3D Tensor 3x3
+
+```js
+(3 matrices, 3x3)
+tensor = np.array([
+[[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+[[10, 11, 12], [13, 14, 15], [16, 17, 18]],
+[[19, 20, 21], [22, 23, 24], [25, 26, 27]]
+])
+```
+
+```json
+A 2x2 matrix with 2 matrices.
+A 2x2 matrix with 3 matrices.
+A 3x3 matrix with 3 matrices.
+```
